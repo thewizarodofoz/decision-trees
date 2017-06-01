@@ -1,11 +1,11 @@
 class ID3 {
 
     static createTree(dataset, targetAttribute, predicate) {
-        let predictingAttributes = Object.keys(dataset[0]).filter(a => a !== targetAttribute);
+        predicate = predicate || (example => example[targetAttribute]);
 
         let tree = new Tree(dataset);
 
-        tree.root = this.grow(tree.root, predictingAttributes, predicate);
+        tree.root = this.grow(tree.root, Object.keys(dataset[0]).filter(a => a !== targetAttribute), predicate);
 
         return tree;
     }
@@ -132,10 +132,6 @@ class Tree {
 
         let splitAttributeValue = kase[node.splitAttribute];
         return this.classify(kase, node.nodes[splitAttributeValue]);
-    }
-
-    toString(node) {
-        node = node || this.root;
     }
 
 }

@@ -23,7 +23,7 @@ describe('should create tree', function() {
 
     it('should create tree', function() {
 
-        let tree = ID3.createTree(examples, 'play', example => example.play);
+        let tree = ID3.createTree(examples, 'play');
 
         examples.forEach(example => {
             let label = tree.classify(example);
